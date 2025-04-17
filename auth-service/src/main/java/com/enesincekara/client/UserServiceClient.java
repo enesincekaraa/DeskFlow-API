@@ -14,4 +14,6 @@ public interface UserServiceClient {
 
     @PostMapping("/auth/check")
     Boolean checkLogin(@RequestBody AuthLoginRequest request);
+
+
 }

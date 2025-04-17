@@ -9,6 +9,7 @@ import com.enesincekara.dto.response.UserDto;
 import com.enesincekara.dto.request.UserUpdateRequest;
 import com.enesincekara.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -90,5 +91,18 @@ public class UserController {
     public ResponseEntity<Boolean> checkLogin(@RequestBody AuthRequest request) {
         return ResponseEntity.ok(userService.checkLogin(request));
     }
+
+
+    @GetMapping("/existsUser/{email}")
+    public boolean existsByEmail(@PathVariable String email) {
+        return userService.existsByEmail(email);
+    }
+
+    @GetMapping("/getByEmail/{email}")
+    public UserDto getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
+
 
 }

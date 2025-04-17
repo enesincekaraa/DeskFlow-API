@@ -118,6 +118,27 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public void checkUserExists(String email) {
+        userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        boolean existsUser= userRepository.existsByEmail(email);
+        if (!existsUser) {
+            throw new UserNotFoundException("User not found with email: " + email);
+        }
+        return true;
+    }
+
+    @Override
+    public UserDto getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
+        return mapper.toUserDto(user);
+    }
+
 
     private User findById(UUID id) {
         return userRepository.findById(id).orElseThrow(()->

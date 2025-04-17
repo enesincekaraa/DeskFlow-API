@@ -34,6 +34,9 @@ public class SecurityConfig {
                         .requestMatchers("/health", "/actuator/**").permitAll()
                         .requestMatchers("/api/v1/users/create").permitAll()
                         .requestMatchers("/api/v1/users/auth/check").permitAll()
+                        .requestMatchers("/api/v1/users/check").permitAll()
+                        .requestMatchers("/api/v1/users/existsUser/**").permitAll()
+                        .requestMatchers("/api/v1/users/getByEmail/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

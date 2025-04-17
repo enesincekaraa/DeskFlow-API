@@ -24,7 +24,11 @@ public interface UserService {
     String deleteUser(UUID id);
 
     UserLoginResponse login(UserLoginRequest request);
-
     boolean checkLogin(AuthRequest request);
 
+    void checkUserExists(String email);
+
+    boolean existsByEmail(String email);
+
+    UserDto getUserByEmail(String email);
 }
