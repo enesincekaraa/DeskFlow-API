@@ -18,4 +18,19 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND
         );
     }
+    @ExceptionHandler(AccountTypeAlreadyException.class)
+    public ResponseEntity<ErrorResponse> handleAccountTypeAlreadyException(AccountTypeAlreadyException ex) {
+        return new ResponseEntity<>(
+                new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), LocalDateTime.now()),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAccountNotFoundException(AccountNotFoundException ex) {
+        return new ResponseEntity<>(
+                new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value(), LocalDateTime.now()),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
 }
